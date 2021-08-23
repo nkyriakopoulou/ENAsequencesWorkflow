@@ -1,1 +1,1 @@
-# ENAsequencesWorkflow
+# ENAsequences Workflow

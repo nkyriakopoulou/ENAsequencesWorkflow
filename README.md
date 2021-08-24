@@ -1,4 +1,4 @@
-# ENAsequences Workflow
+# Analysis workflow for the sequences stored in ENA
 
 This repository contains the set of scripts to analyze the European 
 Nucleotide Archive (ENA) ‘Nucleotide sequences’ dataset. The dataset 

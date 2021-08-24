@@ -2,8 +2,7 @@
 
 This repository contains the set of scripts to analyze the European 
 Nucleotide Archive (ENA) ‘Nucleotide sequences’ dataset. The dataset 
-was downloaded from the ENA portal API (https://www.ebi.ac.uk/ena
-/portal/api/) by using curl and Git CMD. 
+was downloaded from the ENA portal API (https://www.ebi.ac.uk/ena/portal/api/) by using curl and Git CMD. 
 
 This study aimed to explore the extent to which sequences are 
 associated with source material identifiers during their 

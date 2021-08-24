@@ -17,4 +17,5 @@ to evaluate how researchers report source material and
 if they conform to the International Nucleotide Sequence 
 Database Collaboration (INSDC) guidelines.
 
-This repository is entirely made of R scripts.
+This repository is entirely made of R scripts. 
+The scripts require R version 4.0.3 and above.

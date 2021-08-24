@@ -8,7 +8,7 @@ This study aimed to explore the extent to which sequences are
 associated with source material identifiers during their 
 submisssion to ENA and quanitfy those that are linked to 
 a Darwin Core (DwC) - structured (institutionCode:collectionCode:catalogNumber) idnetifier. The DwC - like 
-structures 
+structures have the potential to
 effectively link sequences to a physical specimen stored 
 in a Natural Science Collection (NSC). Three recently 
 published projects/studies that have analysed sequences 

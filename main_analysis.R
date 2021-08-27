@@ -1727,6 +1727,21 @@ library(roll)
 library(ggplot2)
 library(scales)
 
+loadfonts(); windowsFonts()
+
+# $serif
+# [1] "TT Times New Roman"
+
+# $sans
+# [1] "TT Arial"
+
+# $mono
+# [1] "TT Courier New"
+
+# $Times
+# [1] "Helvetica"
+
+
 # Rolling (or moving) averages is a type of smoothing method that averages values over periods, thereby generating a series of averages in order to 
 # reduce the noise and uncover patterns/trends in a time series dataset. The values averaged come from a window of consecutive time periods 
 # (for example, every 3 years). By varying the window (the number of observations included in the rolling calculation), we can vary the 
@@ -1843,15 +1858,15 @@ p1 <- p1 + theme(legend.position = "top")
 p1 <- p1 + labs(title = "3-year Rolling Average with 95% Confidence Interval Bands (+/-2 Standard Deviations)")
 p1 <- p1 + labs(color = "")  
 # Change the font size of the title, legend, axis text and title
-p1 <- p1 + theme(plot.title = element_text(size = 30, face = "bold"),
-                 legend.text = element_text(size = 30),
+p1 <- p1 + theme(plot.title = element_text(size = 30, face = "bold", family = "Times"),
+                 legend.text = element_text(size = 30, family = "Times"),
                  legend.direction = "vertical",
                  legend.box = "vertical",
                  legend.position = "top",
-                 axis.text.x = element_text(size = 30),
-                 axis.text.y = element_text(size = 30),
-                 axis.title.x = element_text(size = 30, vjust = -0.5),
-                 axis.title.y = element_text(size = 30, vjust = 2))
+                 axis.text.x = element_text(size = 30, family = "Times"),
+                 axis.text.y = element_text(size = 30, family = "Times"),
+                 axis.title.x = element_text(size = 30, vjust = -0.5, family = "Times"),
+                 axis.title.y = element_text(size = 30, vjust = 2, family = "Times"))
 p1
 
 
@@ -1882,10 +1897,10 @@ year_countTOT_ROLL$noSource_patterns_cumsum <- cumsum(year_countTOT_ROLL[, c('no
 # Calculate the cumulative sum of the column "noSource_nopatterns" and add it as a new column
 year_countTOT_ROLL$noSource_nopatterns_cumsum <- cumsum(year_countTOT_ROLL[, c('noSource_nopatterns')])
 
-write.csv(year_countTOT_ROLL, file = "D:/.../year_countTOT_ROLL.csv", row.names = F) # Table S4
+write.csv(year_countTOT_ROLL, file = "D:/.../year_countTOT_ROLL.csv", row.names = F) # Supplementary File 2
 
 
-# Subset data frame in order to exclude the years 1982-1989 and 2021 in the plot (too few records were registered at that period)
+# Subset data frame in order to exclude the years 1982-1999 and 2021 in the plot (cumulative sum lines are close to 0)
 
 year_countTOT_ROLL <- year_countTOT_ROLL[19:39, ]
 
@@ -1905,12 +1920,12 @@ p2 <- p2 + theme(legend.position = "top")
 p2 <- p2 + labs(title = "Cumulative sum chart")
 p2 <- p2 + labs(color="")
 # Change the font size of the title, legend, axis text and title
-p2 <- p2 + theme(plot.title = element_text(size = 30, face = "bold"),
-                 legend.text = element_text(size = 30),
-                 axis.text.x = element_text(size = 30),
-                 axis.text.y = element_text(size = 30),
-                 axis.title.x = element_text(size = 30, vjust = -0.5),
-                 axis.title.y = element_text(size = 30, vjust = 2))
+p2 <- p2 + theme(plot.title = element_text(size = 30, face = "bold", family = "Times"),
+                 legend.text = element_text(size = 30, family = "Times"),
+                 axis.text.x = element_text(size = 30, family = "Times"),
+                 axis.text.y = element_text(size = 30, family = "Times"),
+                 axis.title.x = element_text(size = 30, vjust = -0.5, family = "Times"),
+                 axis.title.y = element_text(size = 30, vjust = 2, family = "Times"))
 p2 <- p2 + scale_y_continuous(labels = unit_format(unit = "M", scale = 1e-6, accuracy = 1))
 p2
 
@@ -2128,7 +2143,7 @@ RORresults$`institution codes`[is.na(RORresults$`institution codes`)] <- codes_4
 
 RORresults$`number of results`[is.na(RORresults$`number of results`)] <- "Status code 400"
 
-write.csv(RORresults, file = "D:/.../database_queries/RORresults.csv", row.names = F) # Table S5
+write.csv(RORresults, file = "D:/.../database_queries/RORresults.csv", row.names = F) # Supplementary File 3
 
 
 length(RORresults$`number of results`[RORresults$`number of results`==0])
@@ -2224,7 +2239,7 @@ nores_GRID_json$n[is.na(nores_GRID_json$n)] <- "no results"
 names(nores_GRID_json)[1] <- "institution codes" 
 names(nores_GRID_json)[2] <- "number of results" 
 
-write.csv(nores_GRID_json, file = "D:/.../database_queries/GRIDjson_results.csv", row.names = F) # Table S5
+write.csv(nores_GRID_json, file = "D:/.../database_queries/GRIDjson_results.csv", row.names = F) # Supplementary File 3
 
 
 #  Search institution codes against GBIF Registry of Scientific Collections (GRSciColl) API (https://www.gbif.org/developer/registry) ---------------------------------
@@ -2296,7 +2311,7 @@ GRSciCollresults$`institution codes`[is.na(GRSciCollresults$`institution codes`)
 
 GRSciCollresults$`number of results`[is.na(GRSciCollresults$`number of results`)] <- "Status code 400"
 
-write.csv(GRSciCollresults, file = "D:/.../database_queries/GRSciCollresults_inst.csv", row.names = F) # Table S5
+write.csv(GRSciCollresults, file = "D:/.../database_queries/GRSciCollresults_inst.csv", row.names = F) # Supplementary File 3
 
 
 length(GRSciCollresults$`number of results`[GRSciCollresults$`number of results`==0])
@@ -2464,7 +2479,7 @@ GRSciCollresults$`collection codes`[is.na(GRSciCollresults$`collection codes`)] 
 
 GRSciCollresults$`number of results`[is.na(GRSciCollresults$`number of results`)] <- "Status code 400"
 
-write.csv(GRSciCollresults, file = "D:/.../database_queries/GRSciCollresults_coll.csv", row.names = F) # Table S5
+write.csv(GRSciCollresults, file = "D:/.../database_queries/GRSciCollresults_coll.csv", row.names = F) # Supplementary File 3
 
 
 length(GRSciCollresults$`number of results`[GRSciCollresults$`number of results`==0])
@@ -2608,7 +2623,7 @@ ENAcontents_df$host_identifier = sub("^[^;]*;", "", as.character(ENAcontents_df$
 
 ENAcontents_df$host_identifier = sub("^[^;]*;", "", as.character(ENAcontents_df$host_identifier))
 
-write.csv(ENAcontents_df, file = "D:/.../use_cases/ENAresults_Joffrin_et_al.csv", row.names = F) # Table S6
+write.csv(ENAcontents_df, file = "D:/.../use_cases/ENAresults_Joffrin_et_al.csv", row.names = F) # Supplementary File 4
 
 
 # Examine the format of host identifiers
@@ -2745,7 +2760,7 @@ ENArawReads_matches.df <- do.call(rbind , tables)
 
 ENArawReads_matches.df[is.na(ENArawReads_matches.df)] <- ""
 
-write.csv(ENArawReads_matches.df, file = "D:/.../ENArawReads_matches/matchesTOT.csv", row.names = F) # Table S7
+write.csv(ENArawReads_matches.df, file = "D:/.../ENArawReads_matches/matchesTOT.csv", row.names = F) # Supplementary File 5
 
 
 length(ENArawReads_matches.df$run_accession)
@@ -2961,7 +2976,7 @@ ENAcontents_list <- lapply(ENAcontents, fromJSON)
 
 ENAcontents_df <- bind_rows(ENAcontents_list)
 
-write.csv(ENAcontents_df, file = "D:/Research project_DISSCO/DiSSCo paper/use cases/Kew_treeoflife/ENAresults_genomes.csv", row.names = F) # Table S7
+write.csv(ENAcontents_df, file = "D:/.../Kew_treeoflife/ENAresults_genomes.csv", row.names = F) # Supplementary File 5
 
 ENAcontents_df[ENAcontents_df == ""] <- NA
 
@@ -3031,7 +3046,7 @@ ENAsamples_matches.df <- do.call(rbind , tables)
 
 ENAsamples_matches.df[is.na(ENAsamples_matches.df)] <- ""
 
-write.csv(ENAsamples_matches.df, file = "D:/.../ENAsamples_matches/ENAsample_matchTOT.csv", row.names = F) # Table S7
+write.csv(ENAsamples_matches.df, file = "D:/.../ENAsamples_matches/ENAsample_matchTOT.csv", row.names = F) # Supplementary File 5
 
 
 length(ENAsamples_matches.df$accession)
@@ -3301,6 +3316,6 @@ names(final)[7] <- "Study accession"
 
 final[is.na(final)] <- ""
 
-write.csv(final, file = "D:/.../use_cases/resultsFIN_Wiemers_et_al.csv", row.names = F) # Table S8
+write.csv(final, file = "D:/.../use_cases/resultsFIN_Wiemers_et_al.csv", row.names = F) # Supplementary File 6
 
 # The first two columns contain information from the supplementary file, the rest are the results from ENA.
